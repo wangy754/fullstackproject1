@@ -81,20 +81,21 @@
 
 <a href="/venues/{{ venue.id }}/edit"><button class="btn btn-primary btn-lg">Edit</button></a>
 
-<button onclick="deleteVenue(event)" data-id="{{ venue.id }}" class="btn btn-primary btn-lg">Delete</button>
+<button id="delete-venue" data-id="{{ venue.id }}" class="btn btn-primary btn-lg">Delete</button>
 
 <script>
-	function deleteVenue(e) {
-		const id = e.target.dataset.id
-		fetch('/venues/' + id, { method: 'DELETE' })
-			.then(function (response) {
-				if (response.status == 200) {
-					window.location.replace("/");
-				}
-			})
-			.catch(function (e) {
-				console.error(e);
-			});
+	const deleteBtn = document.getElementById('delete-venue')
+	deleteBtn.onclick = function (e) {
+		const venueId = e.target.dataset['id']
+		fetch('/venues/' + venueId, {
+			method: 'DELETE'
+		}).then(function (response) {
+			if (response.status == 200) {
+				window.location.replace('/');
+			}
+		}).catch(function (e) {
+			console.error(e);
+		});
 	}
 </script>
 

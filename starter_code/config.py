@@ -1,3 +1,4 @@
+
 import os
 
 SECRET_KEY = os.urandom(32)
@@ -9,6 +10,10 @@ DEBUG = True
 
 # Connect to the database
 
+DATABASE_NAME = "fyyur"
+username = 'eliassun'
+#password = 'postgres'
+url = 'localhost:5432'
 
-# TODO IMPLEMENT DATABASE URL
-SQLALCHEMY_DATABASE_URI = "postgresql://eliassun@localhost:5432/fyyur"
+SQLALCHEMY_DATABASE_URI = "postgresql://{}@{}/{}".format(
+        username, url, DATABASE_NAME)
